@@ -66,10 +66,12 @@ def get_pdf_page(email: str, grade: str, lecture_number: int,
 
     # === Step 2: Choose correct PDF file based on grade and lecture ===
     if grade == "الأول الثانوي":
-        pdf_path = os.path.join(BASE_DIR, f"Data1_{lecture_number}.pdf")
-        print("مسار PDF:", pdf_path)  # لتتأكد أن المسار صحيح
-        if not os.path.exists(pdf_path):
-            raise HTTPException(status_code=404, detail="الملف غير موجود")
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        pdf_path = os.path.join(BASE_DIR, "Data1_1.pdf")
+        with open(pdf_path, "rb") as f:
+            pdf_bytes = f.read()
+            doc = fitz.open(stream=pdf_bytes, filetype="pdf")
+            print("عدد الصفحات:", doc.page_count)
     elif grade == "الثاني الثانوي":
         pdf_path = f"Data2_{lecture_number}.pdf"
     elif grade == "الثالث الثانوي":
