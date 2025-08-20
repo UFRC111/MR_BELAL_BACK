@@ -66,7 +66,10 @@ def get_pdf_page(email: str, grade: str, lecture_number: int,
 
     # === Step 2: Choose correct PDF file based on grade and lecture ===
     if grade == "الأول الثانوي":
-        pdf_path = os.path.join(BASE_DIR,f"Data1_{lecture_number}.pdf")
+        pdf_path = os.path.join(BASE_DIR, f"Data1_{lecture_number}.pdf")
+        print("مسار PDF:", pdf_path)  # لتتأكد أن المسار صحيح
+        if not os.path.exists(pdf_path):
+            raise HTTPException(status_code=404, detail="الملف غير موجود")
     elif grade == "الثاني الثانوي":
         pdf_path = f"Data2_{lecture_number}.pdf"
     elif grade == "الثالث الثانوي":
