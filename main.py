@@ -7,6 +7,8 @@ import pymupdf as fitz
 import ast
 from datetime import datetime
 import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 app = FastAPI()
 
 # Enable CORS for frontend access
@@ -64,7 +66,6 @@ def get_pdf_page(email: str, grade: str, lecture_number: int,
 
     # === Step 2: Choose correct PDF file based on grade and lecture ===
     if grade == "الأول الثانوي":
-        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
         pdf_path = os.path.join(BASE_DIR,f"Data1_{lecture_number}.pdf")
     elif grade == "الثاني الثانوي":
         pdf_path = f"Data2_{lecture_number}.pdf"
