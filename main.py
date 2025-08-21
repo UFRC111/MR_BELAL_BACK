@@ -66,11 +66,11 @@ def get_pdf_page(email: str, grade: str, lecture_number: int,
 
     # === Step 2: Choose correct PDF file based on grade and lecture ===
     if grade == "الأول الثانوي":
-        pdf_path = f"files/Data1_{lecture_number}.pdf"
+        pdf_path = f"Data/Data1_{lecture_number}.pdf"
     elif grade == "الثاني الثانوي":
-        pdf_path = f"Data2_{lecture_number}.pdf"
+        pdf_path = f"Data/Data2_{lecture_number}.pdf"
     elif grade == "الثالث الثانوي":
-        pdf_path = f"Data3_{lecture_number}.pdf"
+        pdf_path = f"Data/Data3_{lecture_number}.pdf"
     else:
         raise HTTPException(status_code=400, detail="الصف الدراسي غير صحيح")
 
@@ -239,11 +239,11 @@ def get_quiz_info(email: str, quiz_number: int):
 
     # تحميل بيانات الواجب لمعرفة عدد الصفحات
     if level == "الأول الثانوي":
-        pdf_path = f"Quiz1_{quiz_number}.pdf"
+        pdf_path = f"Quiz/Quiz1_{quiz_number}.pdf"
     elif level == "الثاني الثانوي":
-        pdf_path = f"Quiz2_{quiz_number}.pdf"
+        pdf_path = f"Quiz/Quiz2_{quiz_number}.pdf"
     elif level == "الثالث الثانوي":
-        pdf_path = f"Quiz3_{quiz_number}.pdf"
+        pdf_path = f"Quiz/Quiz3_{quiz_number}.pdf"
     else:
         raise HTTPException(status_code=400, detail="الصف الدراسي غير معروف")
     try:
@@ -334,11 +334,11 @@ def get_quiz_page(email: str, page: int, quiz_number: int):
 
     # Step 2: Determine file path based on level
     if level == "الأول الثانوي":
-        pdf_path = f"Quiz1_{quiz_number}.pdf"
+        pdf_path = f"Quiz/Quiz1_{quiz_number}.pdf"
     elif level == "الثاني الثانوي":
-        pdf_path = f"Quiz2_{quiz_number}.pdf"
+        pdf_path = f"Quiz/Quiz2_{quiz_number}.pdf"
     elif level == "الثالث الثانوي":
-        pdf_path = f"Quiz3_{quiz_number}.pdf"
+        pdf_path = f"Quiz/Quiz3_{quiz_number}.pdf"
     else:
         raise HTTPException(status_code=400, detail="الصف الدراسي غير معروف")
 
@@ -496,7 +496,7 @@ def can_solve_quiz(email: str, requested_quiz: int):
 @app.get("/get_quiz_page_count")
 def get_quiz_page_count(quiz_number: int, quiz_S):
     try:
-        file_path = "Quiz{quiz_number}.pdf"
+        file_path = "Quiz/Quiz{quiz_number}.pdf"
         doc = fitz.open(file_path)
         return {"page_count": len(doc)}
     except:
@@ -658,7 +658,7 @@ def get_attempts(email: str, quiz_number: int):
 @app.get("/get_test_page_count")
 def get_test_page_count(test_number: int):
     try:
-        file_path = "Test{test_number}.pdf"
+        file_path = "Test/Test{test_number}.pdf"
         doc = fitz.open(file_path)
         return {"page_count": len(doc)}
     except:
@@ -738,9 +738,9 @@ def get_test_info(email: str, test_number: int):
         if show_solve:
             if len(scores) > index and scores[index] is not None:
                 pdf_path = {
-                    "الأول الثانوي": f"Test1_{test_number}.pdf",
-                    "الثاني الثانوي": f"Test2_{test_number}.pdf",
-                    "الثالث الثانوي": f"Test3_{test_number}.pdf"
+                    "الأول الثانوي": f"Test/Test1_{test_number}.pdf",
+                    "الثاني الثانوي": f"Test/Test2_{test_number}.pdf",
+                    "الثالث الثانوي": f"Test/Test3_{test_number}.pdf"
                 }.get(level, "")
                 page_count = 1
                 if pdf_path:
@@ -830,9 +830,9 @@ def get_test_info(email: str, test_number: int):
 
         # تحضير بيانات الاختبار الجديد
         pdf_path = {
-            "الأول الثانوي": f"Test1_{test_number}.pdf",
-            "الثاني الثانوي": f"Test2_{test_number}.pdf",
-            "الثالث الثانوي": f"Test3_{test_number}.pdf"
+            "الأول الثانوي": f"Test/Test1_{test_number}.pdf",
+            "الثاني الثانوي": f"Test/Test2_{test_number}.pdf",
+            "الثالث الثانوي": f"Test/Test3_{test_number}.pdf"
         }.get(level)
         if not pdf_path:
             raise HTTPException(status_code=400,
@@ -892,11 +892,11 @@ def get_test_page(email: str, page: int, test_number: int):
 
     # Step 2: Determine file path based on level
     if level == "الأول الثانوي":
-        pdf_path = f"Test1_{test_number}.pdf"
+        pdf_path = f"Test/Test1_{test_number}.pdf"
     elif level == "الثاني الثانوي":
-        pdf_path = f"Test2_{test_number}.pdf"
+        pdf_path = f"Test/Test2_{test_number}.pdf"
     elif level == "الثالث الثانوي":
-        pdf_path = f"Test3_{test_number}.pdf"
+        pdf_path = f"Test/Test3_{test_number}.pdf"
     else:
         raise HTTPException(status_code=400, detail="الصف الدراسي غير معروف")
 
