@@ -7,6 +7,8 @@ import pymupdf as fitz
 import ast
 from datetime import datetime
 import os
+
+# UFRC
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 app = FastAPI()
