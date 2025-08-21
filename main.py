@@ -22,6 +22,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 # === Supabase Info ===
 SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2cmZobGpsbXpuY2lrY2J3aHlyIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MzU2NjM5MSwiZXhwIjoyMDY5MTQyMzkxfQ.JsIusJF4oQxPFUdPiIceYOWdKpBfDKrOTxRquq2VzG4"
 SUPABASE_HEADERS = {
